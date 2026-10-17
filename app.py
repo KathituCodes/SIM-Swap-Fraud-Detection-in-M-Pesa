@@ -991,15 +991,17 @@ elif page == "📊 Model Results":
 
     def highlight_best(s):
         if s.name in ['Precision', 'F1-Score', 'AUC-ROC', 'Fraud Caught', 'Recall']:
-            return ['background-color:#E8F5E9; font-weight:bold;' if v == s.max() else '' for v in s]
+            return ['background-color:#E8F5E9; color:#006633; font-weight:bold;' if v == s.max() else '' for v in s]
         if s.name == 'False Positives':
-            return ['background-color:#E8F5E9; font-weight:bold;' if v == s.min() else '' for v in s]
+            return ['background-color:#E8F5E9; color:#006633; font-weight:bold;' if v == s.min() else '' for v in s]
         return ['' for _ in s]
 
     st.dataframe(
         comp_df.style.apply(highlight_best,
                             subset=['Precision', 'Recall', 'F1-Score', 'AUC-ROC',
-                                    'False Positives', 'Fraud Caught']),
+                                    'False Positives', 'Fraud Caught'])
+                     .format({'Precision': '{:.4f}', 'Recall': '{:.4f}',
+                              'F1-Score': '{:.4f}', 'AUC-ROC': '{:.4f}'}),
         hide_index=True, **stretch(st.dataframe)
     )
     st.markdown("<p style='color:#888; font-size:12px;'>Green = best value in that column</p>",
