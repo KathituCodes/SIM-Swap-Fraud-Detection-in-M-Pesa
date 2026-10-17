@@ -72,6 +72,15 @@ st.markdown(f"""
     padding: 14px 18px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }}
+[data-testid="stMetricLabel"],
+[data-testid="stMetricLabel"] p,
+[data-testid="stMetricLabel"] div {{
+    color: {SAF_MID_TEXT} !important;
+}}
+[data-testid="stMetricValue"],
+[data-testid="stMetricValue"] div {{
+    color: {SAF_DARK_TEXT} !important;
+}}
 .fraud-alert {{
     background: linear-gradient(135deg, #FFF0F0, #FFE5E5);
     border: 2px solid {SAF_RED};
